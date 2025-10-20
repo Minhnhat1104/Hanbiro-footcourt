@@ -2,7 +2,6 @@ import {
   isRouteErrorResponse,
   Links,
   Meta,
-  Outlet,
   Scripts,
   ScrollRestoration,
 } from "react-router";
@@ -13,8 +12,6 @@ import "@fontsource/roboto/300.css";
 import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
-import Login from "./pages/Login";
-import { CssBaseline, useTheme } from "@mui/material";
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -30,7 +27,6 @@ export const links: Route.LinksFunction = () => [
 ];
 
 export function Layout({ children }: { children: React.ReactNode }) {
-  const theme = useTheme();
   return (
     <html lang="en">
       <head>
@@ -40,19 +36,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
-        {/* {children} */}
-        <div
-          style={{
-            width: "100vw",
-            height: "100vh",
-            background: "#fff",
-            display: "flex",
-            color: theme.palette.text.primary,
-          }}
-        >
-          <Login />
-        </div>
-        <CssBaseline />
+        {children}
         <ScrollRestoration />
         <Scripts />
       </body>
@@ -60,9 +44,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
   );
 }
 
-export default function App() {
-  return <Outlet />;
-}
+export { default } from "./App";
 
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
   let message = "Oops!";
